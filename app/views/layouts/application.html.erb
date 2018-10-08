@@ -9,6 +9,16 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <% if current_page?(root_path) %>
+    <% if user_signed_in? %>
+      <%= link_to "Loja", controller: "products" %>
+      <%= link_to 'Log out', destroy_user_session_path, method: :delete%>
+    <% else %>
+      <%= link_to 'Fazer Login', user_session_path%>
+      <%= link_to 'Se cadastrar', new_user_registration_path%>
+    <% end %>
+  <% end %>
+
   <body>
     <%= yield %>
   </body>
